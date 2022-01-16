@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Container from "react-bootstrap/Container"
 import KleptonixNavbar from "../components/navbar"
 
 export default SignUp => {
@@ -11,7 +12,11 @@ export default SignUp => {
 
             <KleptonixNavbar />
 
-            <h1>Sign Up</h1>
+            <Container className="text-center">
+                <h1>This is not, in fact, a Sign Up page.</h1>
+                <h2>It's just another blank page. And so, Sherlock Holmes is stumped once again.</h2>
+                <h4 className="text-muted">Do you ever get collector's anxiety?</h4>
+            </Container>
         </>
     )
 }
