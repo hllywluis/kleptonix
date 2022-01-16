@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model kleptons {
+  id          Int       @id @default(autoincrement())
+  created     DateTime? @db.Timestamptz(6)
+  description String    @db.VarChar(2500)
+  owner       String    @db.VarChar(255)
+  owner_only  Boolean
+  posts       String[]  @db.VarChar(255)
+  stitle      String    @db.VarChar(255)
+  title       String    @db.VarChar(255)
+  user_count  Int
+}
+
+model posts {
+  id      Int       @id @default(autoincrement())
+  author  String    @db.VarChar(255)
+  content String    @db.VarChar(8000)
+  created DateTime? @db.Timestamptz(6)
+  klepton String    @db.VarChar(255)
+  title   String    @db.VarChar(255)
+}
+
+model users {
+  id       Int      @id @default(autoincrement())
+  dname    String   @db.VarChar(255)
+  hidename Boolean
+  subs     String[] @db.VarChar(255)
+}

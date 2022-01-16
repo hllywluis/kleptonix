@@ -1,0 +1,12 @@
+{
+  "configurations": [
+    {
+      "name": "Start Kleptonix",
+      "request": "launch",
+      "runtimeArgs": ["dev"],
+      "runtimeExecutable": "yarn",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    }
+  ]
+}
