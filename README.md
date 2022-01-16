@@ -12,8 +12,6 @@ A community-centric site like you've never seen before.
   - [Configurations](#configurations)
   - [Contributing](#contributing)
 
-<br>
-
 ## Overview
 
 Overview goes here.
