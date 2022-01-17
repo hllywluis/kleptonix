@@ -4,8 +4,7 @@ pull_request_rules:
       - or:
           - "#approved-reviews-by>=1"
           - author=hllywluis
-      - and:
-          - check-success=build
+      - check-success=build
     actions:
       merge:
         method: merge
