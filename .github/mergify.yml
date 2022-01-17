@@ -6,7 +6,7 @@ pull_request_rules:
           - author=hllywluis
       - and:
           - check-success=build
-          - check-success=Analyze
+          - check-success=CodeQL
     actions:
       merge:
         method: merge
