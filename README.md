@@ -1,5 +1,8 @@
 # Kleptonix
 
+[![Docker](https://github.com/hllywluis/kleptonix/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/hllywluis/kleptonix/actions/workflows/docker-publish.yml)
+[![CodeQL](https://github.com/hllywluis/kleptonix/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/hllywluis/kleptonix/actions/workflows/codeql-analysis.yml)
+
 A community-centric site like you've never seen before.
 
 ## Overview
