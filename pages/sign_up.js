@@ -17,15 +17,19 @@ export default SignUp => {
         fontFamily: "Staatliches, serif"
     }
 
-    const [password, setPassword] = useState()
-    const [confirmPassword, setConfirmPassword] = useState()
-    const [passwordError, setPasswordError] = useState(false)
+    const [password, setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
+    const [passwordError, setPasswordError] = useState("")
 
     const checkPassword = (password, confirmPassword) => {
-        if (password === confirmPassword) {
-            return false
+        if (password === "") {
+            return "p-empty"
+        } else if (confirmPassword === "") {
+            return "c-empty"
+        } else if (password !== confirmPassword) {
+            return "not-match"
         } else {
-            return true
+            return "success"
         }
     }
 
@@ -39,7 +43,19 @@ export default SignUp => {
             <KleptonixNavbar />
 
             <Container className="pt-2" fluid>
-                <Alert show={passwordError} variant="danger" onClose={() => setPasswordError(false)} dismissible>
+                <Alert show={passwordError === "p-empty"} variant="danger" onClose={() => setPasswordError(false)} dismissible>
+                    <Alert.Heading style={linkStyle}>You didn't type in a password.</Alert.Heading>
+                    <p>
+                        To ensure your account is secure, please type in a password. Then try again.
+                    </p>
+                </Alert>
+                <Alert show={passwordError === "c-empty"} variant="danger" onClose={() => setPasswordError(false)} dismissible>
+                    <Alert.Heading style={linkStyle}>You didn't type in your password confirmation.</Alert.Heading>
+                    <p>
+                        To make sure that your password isn't mistyped, please confirm your password. Then try again.
+                    </p>
+                </Alert>
+                <Alert show={passwordError === "not-match"} variant="danger" onClose={() => setPasswordError(false)} dismissible>
                     <Alert.Heading style={linkStyle}>Did you type your password in properly?</Alert.Heading>
                     <p>
                         Your password confirmation doesn't match your password. Please try again.
