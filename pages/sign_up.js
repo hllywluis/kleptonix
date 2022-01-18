@@ -1,4 +1,5 @@
 import Head from "next/head"
+import { useRouter } from "next/router"
 import { useState } from "react"
 
 import Alert from "react-bootstrap/Alert"
@@ -8,6 +9,7 @@ import Form from "react-bootstrap/Form"
 import KleptonixNavbar from "../components/navbar"
 
 export default SignUp => {
+    const { query } = useRouter()
 
     const brandStyle = {
         fontFamily: "Bangers, sans-serif"
@@ -59,6 +61,12 @@ export default SignUp => {
                     <Alert.Heading style={linkStyle}>Did you type your password in properly?</Alert.Heading>
                     <p>
                         Your password confirmation doesn't match your password.
+                    </p>
+                </Alert>
+                <Alert show={query.error === "email-taken" ? true : false} variant="danger">
+                    <Alert.Heading style={linkStyle}>Did you forget you had an account?</Alert.Heading>
+                    <p>
+                        That email is already taken.
                     </p>
                 </Alert>
             </Container>
