@@ -30,7 +30,10 @@ model posts {
 
 model users {
   id       Int      @id @default(autoincrement())
-  dname    String   @db.VarChar(255)
-  hidename Boolean
+  dname    String?  @db.VarChar(255)
+  hidename Boolean?
   subs     String[] @db.VarChar(255)
+  email    String   @db.VarChar(255)
+  password String   @db.VarChar(255)
+  name     String?  @db.VarChar(255)
 }

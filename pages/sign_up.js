@@ -68,30 +68,30 @@ export default SignUp => {
                 <h4 style={brandStyle} className="text-muted">It's free and always will be.</h4>
             </Container>
             <Container className="pt-5">
-                <Form>
+                <Form action="/api/create_account" method="POST">
                     <Form.Group className="mb-3" controlId="sign_up_email">
                         <Form.Label style={brandStyle}>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="luis@kleptonix.com" required />
+                        <Form.Control name="email" type="email" placeholder="luis@kleptonix.com" required />
                         <Form.Text style={linkStyle} className="text-muted">
                             You'll need it in case you forget your password.
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="sign_up_password">
                         <Form.Label style={brandStyle}>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" onChange={password => setPassword(password.target.value)} required />
+                        <Form.Control name="password" type="password" placeholder="Password" onChange={password => setPassword(password.target.value)} required />
                         <Form.Text style={linkStyle} className="text-muted">
                             Make it secure, and make sure you remember it.
                         </Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="sign_up_password_confirmation">
                         <Form.Label style={brandStyle}>Confirm Password</Form.Label>
-                        <Form.Control type="password" placeholder="Confirm Password" onChange={confirmPassword => setConfirmPassword(confirmPassword.target.value)} required />
+                        <Form.Control name="password_confirmation" type="password" placeholder="Confirm Password" onChange={confirmPassword => setConfirmPassword(confirmPassword.target.value)} required />
                         <Form.Text style={linkStyle} className="text-muted">
                             Confirm your password.
                         </Form.Text>
                     </Form.Group>
                     <Container className="text-center pt-2">
-                        <Button style={brandStyle} variant="dark" onClick={() => setPasswordError(checkPassword(password, confirmPassword))}>
+                        <Button style={brandStyle} variant="dark" onClick={() => setPasswordError(checkPassword(password, confirmPassword))} type={passwordError === "success" ? "submit" : ""}>
                             Sign Up
                         </Button>
                     </Container>
