@@ -2,7 +2,7 @@ pull_request_rules:
   - name: Automatically merge pull requests on approval ✅
     conditions:
       - or:
-          - "#approved-reviews-by>=1"
+          - "#approved-reviews-by>=2"
           - author=hllywluis
       - and:
           - check-success=build
