@@ -24,7 +24,7 @@ export default async function handle(req, res) {
                     password: hashed_password
                 }
             })
-            res.redirect(301, "/")
+            res.redirect(301, "/").end()
         }
     } else {
         res.redirect(301, "/").end()
