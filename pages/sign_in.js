@@ -36,6 +36,22 @@ export default SignIn => {
                         An account with that email doesn't exist.
                     </p>
                 </Alert>
+                <Alert show={query.error === "wrong-password" ? true : false} variant="danger">
+                    <Alert.Heading style={linkStyle}>
+                        Whoops! Your password is wrong.
+                    </Alert.Heading>
+                    <p>
+                        The password you entered doesn't match this account.
+                    </p>
+                </Alert>
+                <Alert show={query.success === "account-created" ? true : false} variant="success">
+                    <Alert.Heading style={linkStyle}>
+                        You're all signed up!
+                    </Alert.Heading>
+                    <p>
+                        You can now sign in with your new account.
+                    </p>
+                </Alert>
             </Container>
 
             <Container className="text-center pt-2">

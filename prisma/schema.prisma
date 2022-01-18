@@ -36,4 +36,6 @@ model users {
   email    String   @db.VarChar(255)
   password String   @db.VarChar(255)
   name     String?  @db.VarChar(255)
+
+  @@unique([email])
 }
