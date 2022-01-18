@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useRouter } from 'next/router'
 
 import Nav from 'react-bootstrap/Nav'
@@ -23,14 +24,20 @@ export default KleptonixNavbar => {
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-start">
                     <Nav style={linkStyle} activeKey={router.pathname}>
-                        <Nav.Link href="/">Home</Nav.Link>
+                        <Link href="/">
+                            <Nav.Link href="/">Home</Nav.Link>
+                        </Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
                     <Nav style={linkStyle} activeKey={router.pathname}>
-                        <Nav.Link href="/sign_in">Sign In</Nav.Link>
+                        <Link href="/sign_in">
+                            <Nav.Link href="/sign_in">Sign In</Nav.Link>
+                        </Link>
                         <Navbar.Text>or</Navbar.Text>
-                        <Nav.Link href="/sign_up">Sign Up</Nav.Link>
+                        <Link href="/sign_up">
+                            <Nav.Link href="/sign_up">Sign Up</Nav.Link>
+                        </Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

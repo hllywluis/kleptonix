@@ -1,4 +1,5 @@
 import Head from "next/head"
+import { useRouter } from "next/router"
 
 import Alert from "react-bootstrap/Alert"
 import Button from "react-bootstrap/Button"
@@ -7,6 +8,7 @@ import Form from "react-bootstrap/Form"
 import KleptonixNavbar from "../components/navbar"
 
 export default SignIn => {
+    const { query } = useRouter()
 
     const brandStyle = {
         fontFamily: "Bangers, sans-serif"
@@ -26,6 +28,14 @@ export default SignIn => {
             <KleptonixNavbar />
 
             <Container className="text-center pt-2">
+                <Alert show={query.error === "not-found" ? true : false} variant="danger">
+                    <Alert.Heading style={linkStyle}>
+                        It would be wise to sign up before signing in.
+                    </Alert.Heading>
+                    <p>
+                        An account with that email doesn't exist.
+                    </p>
+                </Alert>
             </Container>
 
             <Container className="text-center pt-2">
@@ -33,7 +43,7 @@ export default SignIn => {
                 <h4 style={brandStyle} className="text-muted">Access all the things.</h4>
             </Container>
             <Container className="pt-5">
-                <Form>
+                <Form action="/api/retrieve_account" method="POST">
                     <Form.Group className="mb-3" controlId="sign_up_email">
                         <Form.Label style={brandStyle}>Email address</Form.Label>
                         <Form.Control name="email" type="email" placeholder="luis@kleptonix.com" required />

@@ -42,23 +42,23 @@ export default SignUp => {
 
             <KleptonixNavbar />
 
-            <Container className="pt-2" fluid>
+            <Container className=" text-center pt-2">
                 <Alert show={passwordError === "p-empty"} variant="danger" onClose={() => setPasswordError(false)} dismissible>
                     <Alert.Heading style={linkStyle}>You didn't type in a password.</Alert.Heading>
                     <p>
-                        To ensure your account is secure, please type in a password. Then try again.
+                        To ensure your account is secure, please type in a password.
                     </p>
                 </Alert>
                 <Alert show={passwordError === "c-empty"} variant="danger" onClose={() => setPasswordError(false)} dismissible>
                     <Alert.Heading style={linkStyle}>You didn't type in your password confirmation.</Alert.Heading>
                     <p>
-                        To make sure that your password isn't mistyped, please confirm your password. Then try again.
+                        To make sure that your password isn't mistyped, please confirm your password.
                     </p>
                 </Alert>
                 <Alert show={passwordError === "not-match"} variant="danger" onClose={() => setPasswordError(false)} dismissible>
                     <Alert.Heading style={linkStyle}>Did you type your password in properly?</Alert.Heading>
                     <p>
-                        Your password confirmation doesn't match your password. Please try again.
+                        Your password confirmation doesn't match your password.
                     </p>
                 </Alert>
             </Container>
