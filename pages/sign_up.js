@@ -65,7 +65,7 @@ export default SignUp => {
 
             <Container className="text-center pt-2">
                 <h1 style={linkStyle}>Create your <span style={brandStyle}>Kleptonix</span> account here.</h1>
-                <h4 style={brandStyle} className="text-muted">It's free and always will be.</h4>
+                <h4 style={brandStyle} className="text-muted">It's not just another Reddit.</h4>
             </Container>
             <Container className="pt-5">
                 <Form action="/api/create_account" method="POST">
