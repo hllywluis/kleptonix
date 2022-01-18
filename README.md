@@ -11,7 +11,7 @@ This section will be updated when basic posting and account creation functionali
 
 ## Getting Started
 
-For running the image on Docker, pull the image and make sure to expose port 3000 to access the site. For example,
+For running the image on Docker, pull the image and make sure to expose port 3000 to access the site. For example:
 
 ```sh
 docker run -p 3000:3000 kleptonix
