@@ -1,6 +1,5 @@
 # Kleptonix
 
-[![Docker](https://github.com/hllywluis/kleptonix/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/hllywluis/kleptonix/actions/workflows/docker-publish.yml)
 [![CodeQL](https://github.com/hllywluis/kleptonix/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/hllywluis/kleptonix/actions/workflows/codeql-analysis.yml)
 
 A community-centric site like you've never seen before.
@@ -11,19 +10,31 @@ This section will be updated when basic posting and account creation functionali
 
 ## Getting Started
 
-For running the image on Docker, pull the image and make sure to expose port 3000 to access the site. For example:
+For running the image on Docker, clone the repo using the green button above. Then, simply run:
 
 ```sh
-docker run -p 3000:3000 kleptonix
+docker compose up
 ```
 
-To build locally, you'll need `node` installed along with `yarn`. With these installed, run
+to build the necessary containers.
+
+---
+
+To build locally, you'll need `node` installed along with `yarn`. You will also need `postgres` installed for the database with which to communicate with. With these installed, run
 
 ```sh
 yarn install
 ```
 
-and wait for the dependencies to be installed. When finished, do
+and wait for the dependencies to be installed. After this, you need to have a database set up the way Prisma expects it to be. To achieve this, run
+
+```sh
+yarn prisma db push
+```
+
+and it will push the schema to the database defined in the `DATABASE_URL` environment variable. The necessary Prisma client will also be generated with this command, so there's no need to run `yarn prisma generate` separately.
+
+When finished with those steps, do
 
 ```sh
 yarn run dev
@@ -35,9 +46,7 @@ to run the server in development mode and see changes to the code update in real
 yarn run build
 ```
 
-to do so.
-
-**These instructions will change when Prisma starts to be implemented, so please stay tuned.**
+to do so, but keep in mind that whatever environment the application will be deployed to must have the same `postgres` database setup as defined by `DATABASE_URL` and the schema.
 
 ## Contributing
 
