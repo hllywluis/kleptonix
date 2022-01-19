@@ -1,11 +1,13 @@
 import Link from "next/link"
 import { useRouter } from 'next/router'
+import { useSession, signOut } from "next-auth/react"
 
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Container from 'react-bootstrap/Container'
 
 export default KleptonixNavbar => {
+    const { data: session } = useSession()
     const router = useRouter()
 
     const brandStyle = {
@@ -31,13 +33,23 @@ export default KleptonixNavbar => {
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
                     <Nav style={linkStyle} activeKey={router.pathname}>
-                        <Link href="/sign_in">
-                            <Nav.Link href="/sign_in">Sign In</Nav.Link>
-                        </Link>
-                        <Navbar.Text>or</Navbar.Text>
-                        <Link href="/sign_up">
-                            <Nav.Link href="/sign_up">Sign Up</Nav.Link>
-                        </Link>
+                        {!session ? (
+                            <>
+                                <Link href="/sign_in">
+                                    <Nav.Link href="/sign_in">Sign In</Nav.Link>
+                                </Link>
+                                <Navbar.Text>or</Navbar.Text>
+                                <Link href="/sign_up">
+                                    <Nav.Link href="/sign_up">Sign Up</Nav.Link>
+                                </Link>
+                            </>
+                        ) : (
+                            <>
+                                <Link href="#">
+                                    <Nav.Link onClick={() => signOut({ callbackUrl: "/" })}>Sign Out</Nav.Link>
+                                </Link>
+                            </>
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

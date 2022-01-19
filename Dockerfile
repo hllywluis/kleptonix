@@ -5,7 +5,7 @@ RUN apt update
 RUN apt install -y libc6 g++ make python3-pip
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile --ignore-engines
 
 # Rebuild the source code only when needed
 FROM node:current-slim AS builder
