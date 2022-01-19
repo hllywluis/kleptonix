@@ -18,6 +18,21 @@ RUN yarn build
 FROM node:current-alpine AS runner
 WORKDIR /app
 
+RUN apk add --no-cache bash
+
+COPY scripts/ ./scripts
+RUN ["chmod", "+x", "scripts/wait-for-it.sh"]
+
+RUN mkdir -p /app/node_modules
+
+# For some reason, Prisma looks for a package.json within node_modules...
+COPY package.json ./node_modules
+
+COPY prisma/schema.prisma ./prisma/schema.prisma
+
+COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=builder /app/node_modules/.bin/prisma ./node_modules/.bin/prisma
+
 ENV NODE_ENV production
 
 RUN addgroup -g 1001 -S nodejs
