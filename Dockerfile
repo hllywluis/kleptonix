@@ -1,27 +1,28 @@
 # Install dependencies only when needed
-FROM node:current-alpine AS deps
+FROM node:current-slim AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
-RUN apk add --no-cache g++ make python3 py3-pip
+RUN apt update
+RUN apt install -y libc6 g++ make python3-pip
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
-FROM node:current-alpine AS builder
+FROM node:current-slim AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN yarn build
 
 # Production image, copy all the files and run next
-FROM node:current-alpine AS runner
+FROM node:current-slim AS runner
 WORKDIR /app
-
-RUN apk add --no-cache bash
 
 COPY scripts/ ./scripts
 RUN ["chmod", "+x", "scripts/wait-for-it.sh"]
+
+RUN apt update
+RUN apt install -y openssl
 
 RUN mkdir -p /app/node_modules
 
@@ -35,8 +36,8 @@ COPY --from=builder /app/node_modules/.bin/prisma ./node_modules/.bin/prisma
 
 ENV NODE_ENV production
 
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 
 # You only need to copy next.config.js if you are NOT using the default configuration
 # COPY --from=builder /app/next.config.js ./
