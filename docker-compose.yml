@@ -1,7 +1,8 @@
 x-kleptonix-env: &KLPTX_ENV
   # This environment configuration is purely exemplary and requires changes to be secure.
   environment:
-    - NEXTAUTH_URL=http://localhost:3000/
+  # Change the NEXTAUTH_URL variable to your server's address.
+    - NEXTAUTH_URL=http://10.0.0.200:3000/
     - POSTGRES_USER=kleptonix
     - POSTGRES_PASSWORD=Default_KL3PT0N1X_Password!
     - POSTGRES_DB=kleptonix
@@ -29,4 +30,4 @@ services:
     ports:
       - 3000:3000
     <<: *KLPTX_ENV
-    command: ["./scripts/wait-for-it.sh", "db:5432", "--", "sh", "-c", "yarn prisma generate && yarn prisma db push && node server.js"]
+    command: ["./scripts/wait-for-it.sh", "db:5432", "--", "sh", "-c", "yarn prisma db push && node server.js"]
