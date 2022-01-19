@@ -1,6 +1,7 @@
 x-kleptonix-env: &KLPTX_ENV
   # This environment configuration is purely exemplary and requires changes to be secure.
   environment:
+    - NEXTAUTH_URL=http://localhost:3000/
     - POSTGRES_USER=kleptonix
     - POSTGRES_PASSWORD=Default_KL3PT0N1X_Password!
     - POSTGRES_DB=kleptonix
