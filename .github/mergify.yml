@@ -4,9 +4,7 @@ pull_request_rules:
       - or:
           - "#approved-reviews-by>=2"
           - author=hllywluis
-      - and:
-          - check-success=build
-          - check-success=CodeQL
+      - check-success=CodeQL
     actions:
       review:
         type: APPROVE
