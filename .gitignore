@@ -119,3 +119,6 @@ dist
 
 # macOS
 .DS_Store
+
+# Kleptonix specific
+kleptonix-data/

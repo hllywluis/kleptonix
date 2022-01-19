@@ -11,3 +11,4 @@ __pycache__
 *.swp
 .DS_Store
 *.log
+node_modules/

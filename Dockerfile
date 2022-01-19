@@ -2,7 +2,7 @@
 FROM node:current-alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
-RUN apk add --no-cache g++ make python3 py3-pip
+RUN apk add --no-cache make python3 py3-pip
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
@@ -17,6 +17,21 @@ RUN yarn build
 # Production image, copy all the files and run next
 FROM node:current-alpine AS runner
 WORKDIR /app
+
+RUN apk add --no-cache bash
+
+COPY scripts/ ./scripts
+RUN ["chmod", "+x", "scripts/wait-for-it.sh"]
+
+RUN mkdir -p /app/node_modules
+
+# For some reason, Prisma looks for a package.json within node_modules...
+COPY package.json ./node_modules
+
+COPY prisma/schema.prisma ./prisma/schema.prisma
+
+COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=builder /app/node_modules/.bin/prisma ./node_modules/.bin/prisma
 
 ENV NODE_ENV production
 

@@ -1,0 +1,31 @@
+x-kleptonix-env: &KLPTX_ENV
+  # This environment configuration is purely exemplary and requires changes to be secure.
+  environment:
+    - POSTGRES_USER=kleptonix
+    - POSTGRES_PASSWORD=Default_KL3PT0N1X_Password!
+    - POSTGRES_DB=kleptonix
+    - POSTGRES_HOST=localhost
+    - POSTGRES_PORT=5432
+    - DATABASE_URL=postgresql://kleptonix:Default_KL3PT0N1X_Password!@db:5432/kleptonix?schema=public
+
+services:
+  db:
+    image: postgres
+    healthcheck:
+      test: ["CMD", "psql", "-U", "kleptonix", "-c", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    ports:
+      - 5432:5432
+    volumes:
+      - ./kleptonix-data/:/var/lib/postgresql/data
+    <<: *KLPTX_ENV
+  web:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    <<: *KLPTX_ENV
+    command: ["./scripts/wait-for-it.sh", "db:5432", "--", "sh", "-c", "yarn prisma generate && yarn prisma db push && node server.js"]
