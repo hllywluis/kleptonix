@@ -5,7 +5,7 @@ import Head from 'next/head'
 import Container from 'react-bootstrap/Container'
 import KleptonixNavbar from '../components/navbar'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
 
   let prisma
 
@@ -21,8 +21,7 @@ export async function getStaticProps() {
   const posts = await prisma.posts.findMany()
 
   return {
-    props: { posts },
-    revalidate: 1
+    props: { posts }
   }
 }
 
