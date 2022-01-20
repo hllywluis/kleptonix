@@ -55,20 +55,12 @@ export default SignIn => {
                 <KleptonixNavbar />
 
                 <Container className="text-center pt-2">
-                    <Alert show={query.error === "not-found" ? true : false} variant="danger">
+                    <Alert show={query.error ? true : false} variant="danger">
                         <Alert.Heading style={linkStyle}>
-                            It would be wise to sign up before signing in.
+                            Something you entered isn't right.
                         </Alert.Heading>
                         <p>
-                            An account with that email doesn't exist.
-                        </p>
-                    </Alert>
-                    <Alert show={query.error === "wrong-password" ? true : false} variant="danger">
-                        <Alert.Heading style={linkStyle}>
-                            Whoops! Your password is wrong.
-                        </Alert.Heading>
-                        <p>
-                            The password you entered doesn't match this account.
+                            That email address and password combination doesn't exist.
                         </p>
                     </Alert>
                     <Alert show={query.success === "account-created" ? true : false} variant="success">
