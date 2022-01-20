@@ -4,11 +4,15 @@ import CredentialsProvider from "next-auth/providers/credentials"
 export default NextAuth({
     // The secret provided below must be changed for security purposes.
     secret: "6>\**9g]Ce;98v>6MzAJ_hzZUa4>}(6Z",
+    pages: {
+        signIn: "/sign_in",
+        error: "/sign_in"
+    },
     providers: [
         CredentialsProvider({
             name: "Credentials",
             credentials: {
-                email: { label: "Email address", type: "text", placeholder: "luis@kletonix.com" },
+                email: { label: "Email address", type: "email" },
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials, req) {

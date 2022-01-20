@@ -16,14 +16,14 @@ export default async function handle(req, res) {
         })
 
         if (user < 1) {
-            res.redirect(301, `/sign_in?error=not-found`).end()
+            res.status(500).json({ error: "not-found" })
         } else {
             const passwordMatch = await bcrypt.compare(req.body.password, user.password)
 
             if (passwordMatch) {
                 res.status(200).json(user)
             } else {
-                res.redirect(301, "/sign_in?error=wrong-password").end()
+                res.status(500).json({ error: "wrong-password" })
             }
         }
     } else {
