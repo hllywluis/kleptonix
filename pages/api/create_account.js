@@ -3,8 +3,13 @@ import bcrypt from "bcrypt"
 
 let prisma
 
-if (!PrismaClient.instance) {
+if (process.env.NODE_ENV === 'production') {
     prisma = new PrismaClient()
+} else {
+    if (!global.prisma) {
+        global.prisma = new PrismaClient()
+    }
+    prisma = global.prisma
 }
 
 export default async function handle(req, res) {
@@ -29,6 +34,7 @@ export default async function handle(req, res) {
             } else {
                 const user = await prisma.users.create({
                     data: {
+                        dname: req.body.username,
                         email: req.body.email,
                         password: hashed_password
                     }

@@ -95,11 +95,18 @@ export default SignUp => {
                 </Container>
 
                 <Container className="text-center pt-2">
-                    <h1 style={linkStyle}>Create your <span style={brandStyle}>Kleptonix</span> account here.</h1>
-                    <h4 style={brandStyle} className="text-muted">It's not just another Reddit.</h4>
+                    <h1 style={linkStyle}>Create your <span style={brandStyle}>Kleptonix</span> account here</h1>
+                    <h4 style={brandStyle} className="text-muted">It's not just another Reddit</h4>
                 </Container>
                 <Container className="pt-5">
                     <Form action="/api/create_account" method="POST">
+                        <Form.Group className="mb-3" controlId="sign_up_username">
+                            <Form.Label style={brandStyle}>Username</Form.Label>
+                            <Form.Control type="text" name="username" placeholder="Username" required />
+                            <Form.Text style={linkStyle} className="text-muted">
+                                This is how you'll be known to other users.
+                            </Form.Text>
+                        </Form.Group>
                         <Form.Group className="mb-3" controlId="sign_up_email">
                             <Form.Label style={brandStyle}>Email address</Form.Label>
                             <Form.Control name="email" type="email" placeholder="luis@kleptonix.com" required />
