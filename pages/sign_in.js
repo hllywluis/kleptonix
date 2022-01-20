@@ -74,8 +74,8 @@ export default SignIn => {
                 </Container>
 
                 <Container className="text-center pt-2">
-                    <h1 style={linkStyle}>Sign in with your <span style={brandStyle}>Kleptonix</span> account.</h1>
-                    <h4 style={brandStyle} className="text-muted">Access all the things.</h4>
+                    <h1 style={linkStyle}>Sign in with your <span style={brandStyle}>Kleptonix</span> account</h1>
+                    <h4 style={brandStyle} className="text-muted">Access all the things</h4>
                 </Container>
                 <Container className="pt-5">
                     <Form action="/api/retrieve_account" method="POST">

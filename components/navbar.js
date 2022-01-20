@@ -29,6 +29,9 @@ export default KleptonixNavbar => {
                         <Link href="/">
                             <Nav.Link href="/">Home</Nav.Link>
                         </Link>
+                        <Link href="/about">
+                            <Nav.Link href="/about">About</Nav.Link>
+                        </Link>
                     </Nav>
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
@@ -45,6 +48,9 @@ export default KleptonixNavbar => {
                             </>
                         ) : (
                             <>
+                                <Link href="/profile">
+                                    <Nav.Link href="/profile">{session.user.dname ?? "Profile"}</Nav.Link>
+                                </Link>
                                 <Link href="#">
                                     <Nav.Link onClick={() => signOut({ callbackUrl: "/" })}>Sign Out</Nav.Link>
                                 </Link>
