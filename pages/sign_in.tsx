@@ -24,6 +24,12 @@ export default SignIn => {
         fontFamily: "Staatliches, serif"
     }
 
+    const handle_form_enter = key => {
+        if (key.key === "Enter") {
+            signIn("credentials", { email, password, callbackUrl: "/" })
+        }
+    }
+
     if (session) {
         return (
             <>
@@ -81,15 +87,15 @@ export default SignIn => {
                     <Form action="/api/retrieve_account" method="POST">
                         <Form.Group className="mb-3" controlId="sign_up_email">
                             <Form.Label style={brandStyle}>Email address</Form.Label>
-                            <Form.Control name="email" type="email" placeholder="luis@kleptonix.com" onChange={email => updateEmail(email.target.value)} required />
+                            <Form.Control name="email" type="email" placeholder="luis@kleptonix.com" onChange={email => updateEmail(email.target.value)} onKeyDown={handle_form_enter} required />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="sign_up_password">
                             <Form.Label style={brandStyle}>Password</Form.Label>
-                            <Form.Control name="password" type="password" placeholder="Password" onChange={password => updatePassword(password.target.value)} required />
+                            <Form.Control name="password" type="password" placeholder="Password" onChange={password => updatePassword(password.target.value)} onKeyDown={handle_form_enter} required />
                         </Form.Group>
                         <Container className="text-center pt-2">
                             {!session && (
-                                <Button style={brandStyle} variant="dark" onClick={() => signIn("credentials", { email: email, password: password, callbackUrl: "/" })}>
+                                <Button style={brandStyle} variant="dark" onClick={() => signIn("credentials", { email, password, callbackUrl: "/" })}>
                                     Sign In
                                 </Button>
                             )}

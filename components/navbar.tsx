@@ -12,7 +12,7 @@ export default KleptonixNavbar => {
 
     const brandStyle = {
         fontFamily: "Bangers, sans-serif",
-        pointerEvents: "none"
+        pointerEvents: "none" as "none"
     }
 
     const linkStyle = {
