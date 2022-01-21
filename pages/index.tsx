@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client"
 import { useSession } from "next-auth/react"
 
 import Head from 'next/head'
@@ -6,25 +5,21 @@ import Container from 'react-bootstrap/Container'
 import KleptonixNavbar from '../components/navbar'
 
 export async function getServerSideProps() {
+  const prisma = require("../prisma/prisma")
+  
+  const posts = await prisma.posts?.findMany()
 
-  let prisma
-
-  if (process.env.NODE_ENV === 'production') {
-    prisma = new PrismaClient()
-  } else {
-    if (!global.prisma) {
-      global.prisma = new PrismaClient()
-    }
-    prisma = global.prisma
-  }
-
-  const posts = await prisma.posts.findMany()
-
-  return {
+  if (posts) {
+    return {
     props: { posts }
+    }
+  } else {
+    return {
+      props: { posts: {} }
+    }
   }
+  
 }
-
 
 export default function Home({ posts }) {
   const { data: session } = useSession()
@@ -37,7 +32,7 @@ export default function Home({ posts }) {
     fontFamily: "Staatliches, serif"
   }
 
-  if (posts.length < 1) {
+  if (posts) {
     return (
       <>
         <Head>

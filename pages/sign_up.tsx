@@ -68,19 +68,19 @@ export default SignUp => {
                 <KleptonixNavbar />
 
                 <Container className="text-center pt-2">
-                    <Alert show={passwordError === "p-empty"} variant="danger" onClose={() => setPasswordError(false)} dismissible>
+                    <Alert show={passwordError === "p-empty"} variant="danger" onClose={() => setPasswordError("")} dismissible>
                         <Alert.Heading style={linkStyle}>You didn't type in a password.</Alert.Heading>
                         <p>
                             To ensure your account is secure, please type in a password.
                         </p>
                     </Alert>
-                    <Alert show={passwordError === "c-empty"} variant="danger" onClose={() => setPasswordError(false)} dismissible>
+                    <Alert show={passwordError === "c-empty"} variant="danger" onClose={() => setPasswordError("")} dismissible>
                         <Alert.Heading style={linkStyle}>You didn't type in your password confirmation.</Alert.Heading>
                         <p>
                             To make sure that your password isn't mistyped, please confirm your password.
                         </p>
                     </Alert>
-                    <Alert show={passwordError === "not-match"} variant="danger" onClose={() => setPasswordError(false)} dismissible>
+                    <Alert show={passwordError === "not-match"} variant="danger" onClose={() => setPasswordError("")} dismissible>
                         <Alert.Heading style={linkStyle}>Did you type your password in properly?</Alert.Heading>
                         <p>
                             Your password confirmation doesn't match your password.
@@ -129,7 +129,7 @@ export default SignUp => {
                             </Form.Text>
                         </Form.Group>
                         <Container className="text-center pt-2">
-                            <Button style={brandStyle} variant="dark" onClick={() => setPasswordError(checkPassword(password, confirmPassword))} type={passwordError === "success" ? "submit" : ""}>
+                            <Button style={brandStyle} variant="dark" onClick={() => setPasswordError(checkPassword(password, confirmPassword))} type={passwordError === "success" ? "submit" : "button"}>
                                 Sign Up
                             </Button>
                         </Container>
