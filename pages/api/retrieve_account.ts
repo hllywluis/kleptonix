@@ -3,13 +3,13 @@ import bcrypt from "bcrypt";
 
 export default async function handle(req, res) {
   if (req.method === "POST") {
-    const user = await prisma.users.findUnique({
+    const user = await prisma.users?.findUnique({
       where: {
         email: req.body.email,
       },
     });
 
-    if (user < 1) {
+    if (!user) {
       res.status(500).json({ error: "not-found" });
     } else {
       const passwordMatch = await bcrypt.compare(
