@@ -94,11 +94,9 @@ export default SignIn => {
                             <Form.Control name="password" type="password" placeholder="Password" onChange={password => updatePassword(password.target.value)} onKeyDown={handle_form_enter} required />
                         </Form.Group>
                         <Container className="text-center pt-2">
-                            {!session && (
-                                <Button style={brandStyle} variant="dark" onClick={() => signIn("credentials", { email, password, callbackUrl: "/" })}>
-                                    Sign In
-                                </Button>
-                            )}
+                            <Button style={brandStyle} variant="dark" onClick={() => signIn("credentials", { email, password, callbackUrl: "/" })}>
+                                Sign In
+                            </Button>
                         </Container>
                     </Form>
                 </Container>

@@ -1,5 +1,5 @@
-import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth from "next-auth"
+import CredentialsProvider from "next-auth/providers/credentials"
 
 export default NextAuth({
   // The secret provided below must be changed for security purposes.
@@ -24,24 +24,24 @@ export default NextAuth({
               body: JSON.stringify(credentials),
               headers: { "Content-Type": "application/json" },
             }
-          );
-          const user = await res.json();
+          )
+          const user = await res.json()
 
           if (res.ok && user) {
-            return user;
+            return user
           }
 
-          return null;
+          return null
         } catch (e) {
-          console.log(e);
+          console.log(e)
         }
       },
     }),
   ],
   callbacks: {
     jwt: async ({ token, user }) => {
-      user && (token.user = user);
-      return token;
+      user && (token.user = user)
+      return token
     },
   },
-});
+})
