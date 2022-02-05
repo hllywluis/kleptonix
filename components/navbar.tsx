@@ -22,8 +22,6 @@ export default function KleptonixNavbar({ user }) {
   return (
     <Navbar>
       <Container fluid>
-        <Navbar.Brand style={brandStyle}>Kleptonix</Navbar.Brand>
-        <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-start">
           <Nav style={linkStyle} activeKey={router.pathname}>
             <Link href="/">
@@ -34,6 +32,8 @@ export default function KleptonixNavbar({ user }) {
             </Link>
           </Nav>
         </Navbar.Collapse>
+        <Navbar.Brand style={brandStyle}>Kleptonix</Navbar.Brand>
+        <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav style={linkStyle} activeKey={router.pathname}>
             {!session ? (

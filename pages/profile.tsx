@@ -8,6 +8,7 @@ import Alert from "react-bootstrap/Alert"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
 import Form from "react-bootstrap/Form"
+import InputGroup from "react-bootstrap/InputGroup"
 import Stack from "react-bootstrap/Stack"
 import KleptonixNavbar from "../components/navbar"
 import { linkStyle } from "../styles/linkStyle"
@@ -61,13 +62,16 @@ export default function Profile({ user }) {
             </h2>
             <Form className="w-100" action="/api/update_account" method="POST">
               <Stack direction="horizontal" gap={3}>
-                <Form.Control
-                  className="me-auto"
-                  name="dname"
-                  value={username}
-                  onChange={(username) => setUsername(username.target.value)}
-                  disabled={!changingUsername}
-                />
+                <InputGroup>
+                  <InputGroup.Text id="at-sign">@</InputGroup.Text>
+                  <Form.Control
+                    className="me-auto"
+                    name="dname"
+                    value={username}
+                    onChange={(username) => setUsername(username.target.value)}
+                    disabled={!changingUsername}
+                  />
+                </InputGroup>
                 {!changingUsername ? (
                   <Button
                     variant="outline-secondary"
