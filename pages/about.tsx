@@ -29,7 +29,7 @@ export default function About({ user, owner }) {
   return (
     <>
       <Head>
-        <title>Kleptonix | About</title>
+        <title>Kleptonix | About{user.dname ? ` | @${user.dname}` : ""}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

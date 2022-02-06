@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Link from "next/link"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import { useSession } from "next-auth/react"
@@ -40,7 +41,9 @@ export default function Profile({ user }) {
     return (
       <>
         <Head>
-          <title>Kleptonix | Profile</title>
+          <title>
+            Kleptonix | Profile{user.dname ? ` | @${user.dname}` : ""}
+          </title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -114,11 +117,14 @@ export default function Profile({ user }) {
         <KleptonixNavbar user={{}} />
 
         <Container className="text-center pt-2">
-          <Alert show={query.error ? true : false} variant="danger">
+          <Alert show={true} variant="danger">
             <Alert.Heading style={linkStyle}>
-              This is a simple warning that will be removed once protected
-              routes are implemented.
+              You're not signed in.
             </Alert.Heading>
+            <p>
+              You need to sign in before you can access this page. You can sign
+              in <Link href="/sign_in">here</Link>.
+            </p>
           </Alert>
         </Container>
       </>
