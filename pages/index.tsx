@@ -4,7 +4,6 @@ import { useSession } from "next-auth/react"
 import { retrieve_user } from "../tools/retrieve_user"
 
 import Head from "next/head"
-import Badge from "react-bootstrap/Badge"
 import Button from "react-bootstrap/Button"
 import Card from "react-bootstrap/Card"
 import Container from "react-bootstrap/Container"
@@ -74,7 +73,7 @@ export default function Home({ user }) {
     return (
       <>
         <Head>
-          <title>Kleptonix | Home</title>
+          <title>Kleptonix | Home{user.dname ? ` | @${user.dname}` : ""}</title>
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
@@ -89,10 +88,13 @@ export default function Home({ user }) {
           <>
             {!session && (
               <>
-                <Container className="py-2">
-                  <div className="h-100 p-5 bg-light border rounded-3">
+                <Container className="py-2 pb-4">
+                  <div
+                    id="main-jumbotron"
+                    className="h-100 p-5 bg-light border rounded-3"
+                  >
                     <Container className="py-2" fluid>
-                      <div className="row">
+                      <div className="row text-white">
                         <div className="col">
                           <h1 className="display-6 pb-2 fw-bold">
                             Code? It's in our DNA.
@@ -113,7 +115,7 @@ export default function Home({ user }) {
                     </Container>
                   </div>
                 </Container>
-                <h1 style={linkStyle} className="py-2 text-center">
+                <h1 style={linkStyle} className="text-center">
                   Featured Conversations
                 </h1>
               </>
@@ -122,7 +124,7 @@ export default function Home({ user }) {
             {/* TODO: Add post functionality below this comment. */}
             <Container className="my-auto py-2">
               <div className="row">
-                <div className="col">
+                <div className="col-md-6 py-2">
                   <Card className="h-100 bg-light border rounded-3">
                     <Card.Body>
                       <div className="text-center">
@@ -130,7 +132,9 @@ export default function Home({ user }) {
                           <h4>Welcome to Kleptonix</h4>
                         </Card.Title>
                         <Card.Subtitle>
-                          <h6 className="text-muted">Luis Bauza - @luis</h6>
+                          <h6 className="text-muted">
+                            Luis Bauza - @luis - k/kleptonix
+                          </h6>
                         </Card.Subtitle>
                       </div>
                       <hr />
@@ -164,7 +168,7 @@ export default function Home({ user }) {
                           <small className="text-muted">0 views</small>
                         </div>
                         <div className="col-auto mx-auto text-center">
-                          <small className="text-muted">0 Comments</small>
+                          <small className="text-muted">0 Replies</small>
                         </div>
                         <div className="col-auto ml-auto text-right">
                           <small className="text-muted">Report</small>
@@ -173,7 +177,7 @@ export default function Home({ user }) {
                     </Card.Footer>
                   </Card>
                 </div>
-                <div className="col">
+                <div className="col-md-6 py-2">
                   <Card className="h-100 bg-light border rounded-3">
                     <Card.Body>
                       <div className="text-center">
@@ -181,7 +185,9 @@ export default function Home({ user }) {
                           <h4>The Beauty of JavaScript</h4>
                         </Card.Title>
                         <Card.Subtitle>
-                          <h6 className="text-muted">John Doe - @jdoe</h6>
+                          <h6 className="text-muted">
+                            John Doe - @jdoe - k/javascript
+                          </h6>
                         </Card.Subtitle>
                       </div>
                       <hr />
@@ -214,7 +220,7 @@ export default function Home({ user }) {
                           <small className="text-muted">0 views</small>
                         </div>
                         <div className="col-auto mx-auto text-center">
-                          <small className="text-muted">0 Comments</small>
+                          <small className="text-muted">0 Replies</small>
                         </div>
                         <div className="col-auto ml-auto text-right">
                           <small className="text-muted">Report</small>
@@ -225,7 +231,7 @@ export default function Home({ user }) {
                 </div>
               </div>
             </Container>
-            <Container className="my-auto py-2">
+            <Container className="my-auto">
               <div className="row">
                 <div className="col">
                   <Card className="h-100 bg-light border rounded-3">
@@ -236,7 +242,7 @@ export default function Home({ user }) {
                         </Card.Title>
                         <Card.Subtitle>
                           <h6 className="text-muted">
-                            Bryan Grigorie - @bgregz
+                            Bryan Grigorie - @bgregz - k/python
                           </h6>
                         </Card.Subtitle>
                       </div>
@@ -271,7 +277,7 @@ export default function Home({ user }) {
                           <small className="text-muted">0 views</small>
                         </div>
                         <div className="col-auto mx-auto text-center">
-                          <small className="text-muted">0 Comments</small>
+                          <small className="text-muted">0 Replies</small>
                         </div>
                         <div className="col-auto ml-auto text-right">
                           <small className="text-muted">Report</small>
