@@ -10,6 +10,12 @@ export default function Postcard({
   views,
   replies,
 }) {
+  const showdown = require("showdown")
+  const converter = new showdown.Converter({
+    strikethrough: true,
+    omitExtraWLInCodeBlocks: true,
+  })
+
   return (
     <Card className="h-100 bg-light border rounded-3">
       <Card.Body>
@@ -24,7 +30,7 @@ export default function Postcard({
           </Card.Subtitle>
         </div>
         <hr />
-        <Card.Text>{Parse(text)}</Card.Text>
+        <Card.Text>{Parse(converter.makeHtml(text))}</Card.Text>
       </Card.Body>
       <Card.Footer className="text-left">
         <div className="row">
