@@ -12,9 +12,9 @@ This section will be updated when basic posting and account creation functionali
 
 For running the image on Docker, clone the repo using the green button above. Then, simply run
 
-````sh
+```sh
 docker compose up
-``
+```
 
 to build the necessary containers.
 
