@@ -10,11 +10,11 @@ This section will be updated when basic posting and account creation functionali
 
 ## Getting Started
 
-For running the image on Docker, clone the repo using the green button above. Then, simply run:
+For running the image on Docker, clone the repo using the green button above. Then, simply run
 
-```sh
+````sh
 docker compose up
-```
+``
 
 to build the necessary containers.
 
@@ -24,7 +24,7 @@ To build locally, you'll need `node` installed along with `yarn`. You will also 
 
 ```sh
 yarn install
-```
+````
 
 and wait for the dependencies to be installed. After this, you need to have a database set up the way Prisma expects it to be. To achieve this, run
 

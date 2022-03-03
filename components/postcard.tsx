@@ -35,7 +35,7 @@ export default function Postcard({
           </div>
           <div className="col-auto mx-auto text-center">
             <small className="text-muted">
-              {replies} {replies === "1" ? " Reply" : " Replies"}
+              {replies} {replies === 1 ? " Reply" : " Replies"}
             </small>
           </div>
           <div className="col-auto ml-auto text-right">

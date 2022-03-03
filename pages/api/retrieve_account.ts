@@ -3,7 +3,7 @@ import bcrypt from "bcrypt"
 
 export default async function handle(req, res) {
   if (req.method === "POST") {
-    const user = await prisma.users?.findUnique({
+    const user = await prisma.user?.findUnique({
       where: {
         email: req.body.email,
       },
