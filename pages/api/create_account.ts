@@ -21,7 +21,7 @@ export default async function handle(req, res) {
     )
 
     if (passwordMatch && confirmPasswordMatch) {
-      const checkUser = await prisma.users.findUnique({
+      const checkUser = await prisma.user.findUnique({
         where: {
           email: req.body.email,
         },
@@ -30,7 +30,7 @@ export default async function handle(req, res) {
       if (checkUser) {
         res.redirect(301, `/sign_up?error=email-taken`).end()
       } else {
-        const user = await prisma.users.create({
+        const user = await prisma.user.create({
           data: {
             dname: req.body.dname,
             email: req.body.email,
