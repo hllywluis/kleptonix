@@ -24,7 +24,7 @@ To build locally, you'll need `node` installed along with `yarn`. You will also 
 
 ```sh
 yarn install
-````
+```
 
 and wait for the dependencies to be installed. After this, you need to have a database set up the way Prisma expects it to be. To achieve this, run
 

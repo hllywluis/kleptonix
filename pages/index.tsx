@@ -192,7 +192,21 @@ export default function Home({ user }) {
                     klepton="rust"
                     text={
                       "##### What is Rust?\n" +
-                      "Rust is a programming language. We don't need to talk about it."
+                      "Rust is a programming language. We don't need to talk about it, unless there's some reason why you need to crunch numbers."
+                    }
+                    views={0}
+                    replies={0}
+                  />
+                </div>
+                <div className="col-md-6 py-2">
+                  <Postcard
+                    title="Java is Not a Programming Language"
+                    author="Luis Bauza"
+                    username="luis"
+                    klepton="java"
+                    text={
+                      "##### What is Java?\n" +
+                      "Believe it or not, most developers don't know that Java refers to a cup of coffee and not a programming language."
                     }
                     views={0}
                     replies={0}
