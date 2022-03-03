@@ -5,7 +5,6 @@ import { retrieve_user } from "../tools/retrieve_user"
 
 import Head from "next/head"
 import Button from "react-bootstrap/Button"
-import Card from "react-bootstrap/Card"
 import Container from "react-bootstrap/Container"
 
 import KleptonixNavbar from "../components/navbar"
@@ -130,7 +129,7 @@ export default function Home({ user }) {
             )}
 
             {/* TODO: Add post functionality below this comment. */}
-            <Container className="my-auto py-2">
+            <Container className="my-auto pt-2">
               <div className="row">
                 <div className="col-md-6 py-2">
                   <Postcard
@@ -146,8 +145,8 @@ export default function Home({ user }) {
                         "##### When will the website be finished?\n" +
                         "There's always something new to add or a bug to fix. I don't anticipate development ever finishing but most functionality should be implemented within the next few years (this is a side project, after all)."
                     )}
-                    views="0"
-                    replies="0"
+                    views={1}
+                    replies={1}
                   />
                 </div>
                 <div className="col-md-6 py-2">
@@ -162,15 +161,15 @@ export default function Home({ user }) {
                         "##### Why should I care?\n" +
                         "In addition to being one of the most widely used languages on the Web, JavaScript is also used for certain desktop applications. Node.js allows developers to create desktop applications using JavaScript. Making web applications becomes much easier and faster using this language. If this website is made using JavaScript, just imagine what you might be able to create using it!"
                     )}
-                    views="0"
-                    replies="0"
+                    views={0}
+                    replies={0}
                   />
                 </div>
               </div>
             </Container>
             <Container className="my-auto">
               <div className="row">
-                <div className="col">
+                <div className="col py-2">
                   <Postcard
                     title="Python is Cool"
                     author="Bryan Grigorie"
@@ -183,8 +182,26 @@ export default function Home({ user }) {
                         "You'll probably use Python in your job too, if you're not already using it. It's a great language to learn, and it's a great language to use. I've used Python for a lot of things, and I'm pretty sure I'll use it again. It's one of those languages that I don't think will ever die down in popularity, unless something even more efficient becomes available.\n\n" +
                         "For those that are still learning programming, Python is a great starter language."
                     )}
-                    views="0"
-                    replies="0"
+                    views={0}
+                    replies={0}
+                  />
+                </div>
+              </div>
+            </Container>
+            <Container className="my-auto">
+              <div className="row">
+                <div className="col-md-6 py-2">
+                  <Postcard
+                    title="Rust is Uncool"
+                    author="John Doe"
+                    username="jdoe"
+                    klepton="rust"
+                    text={converter.makeHtml(
+                      "##### What is Rust?\n" +
+                        "Rust is a programming language. We don't need to talk about it."
+                    )}
+                    views={0}
+                    replies={0}
                   />
                 </div>
               </div>

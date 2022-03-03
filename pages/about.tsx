@@ -15,12 +15,12 @@ export async function getServerSideProps(req) {
   const ownerEmail = "luis@kleptonix.com"
   let props = await retrieve_user(req)
 
-  const owner = await prisma.users?.findUnique({
+  const owner = await prisma.user?.findUnique({
     where: {
       email: ownerEmail,
     },
   })
-  props["props"]["owner"] = owner
+  props["props"]["owner"] = owner ? owner : {}
 
   return props
 }

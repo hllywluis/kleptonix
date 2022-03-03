@@ -6,7 +6,7 @@ export default async function handle(req, res) {
 
   if (req.method === "POST") {
     if (session.user) {
-      const result = await prisma.users.update({
+      const result = await prisma.user.update({
         where: {
           email: session.user.email,
         },
