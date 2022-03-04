@@ -27,6 +27,9 @@ export default function KleptonixNavbar({ user }) {
             <Link href="/">
               <Nav.Link href="/">Home</Nav.Link>
             </Link>
+            <Link href="/kleptons">
+              <Nav.Link href="/kleptons">Kleptons</Nav.Link>
+            </Link>
             <Link href="/about">
               <Nav.Link href="/about">About</Nav.Link>
             </Link>
