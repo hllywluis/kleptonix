@@ -8,15 +8,18 @@ datasource db {
 }
 
 model klepton {
-  id          Int       @id @default(autoincrement())
-  created     DateTime? @db.Timestamptz(6)
-  description String    @db.VarChar(2500)
-  owner       String    @db.VarChar(255)
-  owner_only  Boolean
-  posts       String[]  @db.VarChar(255)
-  stitle      String    @db.VarChar(255)
-  title       String    @db.VarChar(255)
-  user_count  Int
+  id            Int       @id @default(autoincrement())
+  created       DateTime? @db.Timestamptz(6)
+  description   String    @db.VarChar(2500)
+  owner         String    @db.VarChar(255)
+  pic           String    @db.VarChar(255)
+  owner_only    Boolean
+  member_only   Boolean
+  posts         String[]  @db.VarChar(255)
+  stitle        String    @db.VarChar(255)
+  title         String    @db.VarChar(255)
+  member_count  Int
+  post_count    Int
 }
 
 model post {
