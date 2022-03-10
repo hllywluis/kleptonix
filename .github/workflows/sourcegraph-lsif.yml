@@ -12,7 +12,7 @@ on:
 jobs:
   lsif-node:
     # this line will prevent forks of this repo from uploading lsif indexes
-    if: github.repository == 'kleptonix'
+    if: github.repository == 'hllywluis/kleptonix'
     runs-on: ubuntu-latest
     container: sourcegraph/lsif-node:latest
     steps:
