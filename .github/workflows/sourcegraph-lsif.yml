@@ -1,0 +1,16 @@
+jobs:
+  lsif-node:
+    # this line will prevent forks of this repo from uploading lsif indexes
+    if: github.repository == 'kleptonix'
+    runs-on: ubuntu-latest
+    container: sourcegraph/lsif-node:latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: npm install --ignore-engines
+      - name: Generate LSIF data
+        run: lsif-tsc -p .
+      - name: Upload LSIF data
+        # this will upload to Sourcegraph.com, you may need to substitute a different command
+        # by default, we ignore failures to avoid disrupting CI pipelines with non-critical errors.
+        run: src lsif upload -github-token=${{ secrets.GITHUB_TOKEN }}
