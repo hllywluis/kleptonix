@@ -15,7 +15,7 @@
     "html-react-parser": "^1.4.8",
     "lodash": "^4.17.21",
     "next": "latest",
-    "next-auth": "^4.2.1",
+    "next-auth": "^4.9.0",
     "prisma": "^3.10.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
