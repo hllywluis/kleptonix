@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies
-        run: apk add git && yarn global add @sourcegraph/scip-typescript @sourcegraph/src --ignore-engines && yarn install --ignore-engines
+        run: apk add git && yarn global add @sourcegraph/scip-typescript @sourcegraph/src --ignore-engines && yarn install --ignore-engines && git config --global --add safe.directory /__w/kleptonix/kleptonix
       - name: Generate LSIF data
         run: scip-typescript index .
       - name: Upload LSIF data
