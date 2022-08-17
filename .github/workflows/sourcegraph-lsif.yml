@@ -1,4 +1,4 @@
-name: Sourcegraph LSIF
+name: Sourcegraph SCIP
 
 on:
   push:
@@ -14,13 +14,13 @@ jobs:
     # this line will prevent forks of this repo from uploading lsif indexes
     if: github.repository == 'hllywluis/kleptonix'
     runs-on: ubuntu-latest
-    container: sourcegraph/lsif-node:latest
+    container: node:current-alpine
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies
-        run: npm install --ignore-engines
+        run: apk add git && yarn global add @sourcegraph/scip-typescript @sourcegraph/src --ignore-engines && yarn install --ignore-engines && git config --global --add safe.directory /__w/kleptonix/kleptonix
       - name: Generate LSIF data
-        run: lsif-tsc -p .
+        run: scip-typescript index .
       - name: Upload LSIF data
         # this will upload to Sourcegraph.com, you may need to substitute a different command
         # by default, we ignore failures to avoid disrupting CI pipelines with non-critical errors.
