@@ -10,6 +10,7 @@
     "@babel/core": "^7.18.10",
     "@popperjs/core": "^2.11.6",
     "@prisma/client": "4.2.1",
+    "@sourcegraph/src": "^3.43.0",
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.2.0",
     "html-react-parser": "^3.0.1",

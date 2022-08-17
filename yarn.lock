@@ -373,6 +373,13 @@
     uncontrollable "^7.2.1"
     warning "^4.0.3"
 
+"@sourcegraph/src@^3.43.0":
+  version "3.43.0"
+  resolved "https://registry.yarnpkg.com/@sourcegraph/src/-/src-3.43.0.tgz#85e3f068ecf2934aeeb63939983f0906ea7a6403"
+  integrity sha512-25w/AXGrhrHS3la2aLJ1Rm35IXmhyzbHf1BeCGWwPp9GATiZ1i1ewm9tWx1DuQAYdnAM4Du6J1m2Ee8MPLLH0g==
+  dependencies:
+    tar "^6.1.11"
+
 "@types/node@^18.7.6":
   version "18.7.6"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.6.tgz#31743bc5772b6ac223845e18c3fc26f042713c83"
