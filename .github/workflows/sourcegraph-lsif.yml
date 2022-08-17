@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies
-        run: yarn global add @sourcegraph/src --ignore-engines && yarn install --ignore-engines
+        run: yarn global add @sourcegraph/scip-typescript @sourcegraph/src --ignore-engines && yarn install --ignore-engines
       - name: Generate LSIF data
         run: scip-typescript index .
       - name: Upload LSIF data
