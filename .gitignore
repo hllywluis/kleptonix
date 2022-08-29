@@ -119,6 +119,7 @@ dist
 
 # macOS
 .DS_Store
+*.icloud
 
 # Kleptonix specific
 kleptonix-data/
