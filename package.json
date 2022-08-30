@@ -13,6 +13,7 @@
     "@sourcegraph/src": "^3.43.0",
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.2.0",
+    "caniuse-lite": "^1.0.30001384",
     "html-react-parser": "^3.0.1",
     "lodash": "^4.17.21",
     "next": "latest",
