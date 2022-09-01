@@ -30,7 +30,7 @@ export default function Postcard({
           </Card.Subtitle>
         </div>
         <hr />
-        <Card.Text>{Parse(converter.makeHtml(text))}</Card.Text>
+        <span>{Parse(converter.makeHtml(text))}</span>
       </Card.Body>
       <Card.Footer className="text-left">
         <div className="row">
