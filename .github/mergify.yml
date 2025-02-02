@@ -1,21 +1,65 @@
 pull_request_rules:
-  - name: Automatically merge pull requests on approval ✅
+  - name: Automatic merge for Dependabot pull requests
+    conditions:
+      - author=dependabot[bot]
+      - base=main
+      - check-success=CodeQL
+      - "#approved-reviews-by>=1"  # Require at least one approval
+      - label!=do-not-merge
+      - -conflict  # Must not have conflicts
+      - -draft  # Must not be a draft PR
+    actions:
+      queue:
+        name: default
+        method: squash  # Squash and merge
+        commit_message_template: |
+          {{title}} (#{{number}})
+          
+          {{body}}
+
+  - name: Automatic merge for hllywluis
+    conditions:
+      - author=hllywluis
+      - base=main
+      - check-success=CodeQL
+      - label!=do-not-merge
+      - -conflict
+      - -draft
+    actions:
+      queue:
+        name: default
+        method: squash
+        commit_message_template: |
+          {{title}} (#{{number}})
+          
+          {{body}}
+        
+  - name: Add label on conflict
     conditions:
       - or:
-          - "#approved-reviews-by>=2"
-          - author=hllywluis
-      - check-success=CodeQL
+        - author=dependabot[bot]
+        - author=hllywluis
+      - conflict
     actions:
-      review:
-        type: APPROVE
-        message: "Automatically approving pull request based on successful checks."
-      merge:
-        method: merge
-      delete_head_branch:
-  - name: Automatic approval for Dependabot pull requests
+      comment:
+        message: "@{{author}} this pull request has conflicts that need to be resolved"
+      label:
+        add:
+          - conflict
+
+  # Security specific rules
+  - name: Warn on high risk dependencies
     conditions:
-      - author~=^dependabot(|-preview)\[bot\]$
+      - author=dependabot[bot]
+      - label~=security
+      - label~=high-risk
     actions:
-      review:
-        type: APPROVE
-        message: Automatically approving dependabot pull request.
+      comment:
+        message: |
+          ⚠️ This PR updates dependencies with security implications.
+          Please review carefully before merging.
+
+queue_rules:
+  - name: default
+    conditions:
+      - check-success=CodeQL
