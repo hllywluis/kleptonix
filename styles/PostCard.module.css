@@ -1,0 +1,45 @@
+.card {
+  height: 100%;
+  background-color: var(--bs-light);
+  border-radius: 0.75rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.title {
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--bs-text-muted);
+  font-size: 0.9rem;
+}
+
+.content {
+  margin-top: 1rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.footerText {
+  color: var(--bs-text-muted);
+  font-size: 0.875rem;
+}
+
+.reportButton {
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.reportButton:hover {
+  color: var(--bs-danger);
+}

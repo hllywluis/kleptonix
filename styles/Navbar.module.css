@@ -1,0 +1,27 @@
+.navbar {
+  width: 100%;
+}
+
+.brand {
+  font-family: Bangers, cursive;
+  pointer-events: none;
+}
+
+.nav {
+  font-family: Staatliches, cursive;
+  display: flex;
+  align-items: center;
+}
+
+.divider {
+  margin: 0 0.5rem;
+  color: var(--bs-navbar-color);
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
