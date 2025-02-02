@@ -3,9 +3,7 @@ pull_request_rules:
     conditions:
       - author=dependabot[bot]
       - base=main
-      - check-success=test  # Assuming you have a test workflow
-      - check-success=lint  # Assuming you have a lint workflow
-      - check-success=build # Assuming you have a build workflow
+      - check-success=CodeQL
       - "#approved-reviews-by>=1"  # Require at least one approval
       - label!=do-not-merge
       - -conflict  # Must not have conflicts
@@ -23,9 +21,7 @@ pull_request_rules:
     conditions:
       - author=hllywluis
       - base=main
-      - check-success=test
-      - check-success=lint
-      - check-success=build
+      - check-success=CodeQL
       - label!=do-not-merge
       - -conflict
       - -draft
@@ -66,6 +62,4 @@ pull_request_rules:
 queue_rules:
   - name: default
     conditions:
-      - check-success=test
-      - check-success=lint
-      - check-success=build
+      - check-success=CodeQL
