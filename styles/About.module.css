@@ -1,0 +1,17 @@
+.title {
+  font-family: Staatliches, cursive;
+}
+
+.brand {
+  font-family: Bangers, cursive;
+}
+
+.link {
+  color: var(--bs-link-color);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.link:hover {
+  color: var(--bs-link-hover-color);
+}

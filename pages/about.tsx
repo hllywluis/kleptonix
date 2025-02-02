@@ -1,52 +1,106 @@
 import Head from "next/head"
 import Link from "next/link"
+import { GetServerSideProps } from "next"
 import { retrieve_user } from "../tools/retrieve_user"
-
 import Container from "react-bootstrap/Container"
 import Stack from "react-bootstrap/Stack"
 import KleptonixNavbar from "../components/navbar"
-import { linkStyle } from "../styles/linkStyle"
-import { brandStyle } from "../styles/brandStyle"
+import styles from "../styles/About.module.css"
+import type { User } from "../types/components"
 
-export async function getServerSideProps(req) {
-  const client = require("../prisma/prisma")
-  const { prisma } = client
-
-  const ownerEmail = "luis@kleptonix.com"
-  let props = await retrieve_user(req)
-
-  const owner = await prisma.user?.findUnique({
-    where: {
-      email: ownerEmail,
-    },
-  })
-  props["props"]["owner"] = owner ? owner : {}
-
-  return props
+interface AboutProps {
+  user: User
+  owner: User
 }
 
-export default function About({ user, owner }) {
+const defaultOwner: User = {
+  id: 1,
+  dname: "luis",
+  email: "luis@kleptonix.com",
+  password: "",
+  subs: [],
+  hidename: false,
+  name: "Luis Bauza",
+}
+
+const defaultUser: User = {
+  id: 0,
+  email: "",
+  password: "",
+  subs: [],
+  dname: null,
+  hidename: null,
+  name: null,
+}
+
+export const getServerSideProps: GetServerSideProps<AboutProps> = async (
+  context
+) => {
+  let owner = defaultOwner
+  let user = defaultUser
+
+  try {
+    const userProps = await retrieve_user(context)
+    if (userProps?.props?.user) {
+      user = userProps.props.user
+    }
+  } catch (error) {
+    console.error("Error retrieving user:", error)
+  }
+
+  try {
+    const client = require("../prisma/prisma")
+    const { prisma } = client
+    const ownerEmail = "luis@kleptonix.com"
+
+    const dbOwner = await prisma.user?.findUnique({
+      where: {
+        email: ownerEmail,
+      },
+    })
+
+    if (dbOwner) {
+      owner = dbOwner
+    }
+  } catch (error) {
+    console.error(
+      "Database connection failed, using default owner data:",
+      error
+    )
+  }
+
+  return {
+    props: {
+      user,
+      owner,
+    },
+  }
+}
+
+export default function About({ user, owner }: AboutProps) {
+  const pageTitle = `Kleptonix | About${user.dname ? ` | @${user.dname}` : ""}`
+
   return (
     <>
       <Head>
-        <title>Kleptonix | About{user.dname ? ` | @${user.dname}` : ""}</title>
+        <title>{pageTitle}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <KleptonixNavbar user={user} />
 
       <Container className="text-center pt-2">
-        <h1 style={linkStyle}>
-          About <span style={brandStyle}>Kleptonix</span>
+        <h1 className={styles.title}>
+          About <span className={styles.brand}>Kleptonix</span>
         </h1>
-        <h4 style={brandStyle} className="text-muted">
+        <h4 className={`${styles.brand} text-muted`}>
           Developed with TLC from SoFlo
         </h4>
       </Container>
 
       <Container className="pt-4">
         <Stack direction="horizontal" gap={3}>
-          <h2 style={linkStyle}>Where Developers Come to Gather</h2>
+          <h2 className={styles.title}>Where Developers Come to Gather</h2>
         </Stack>
         <hr />
         <p>
@@ -66,21 +120,25 @@ export default function About({ user, owner }) {
           each other?
           <br />
           <br />
-          That's my goal for what <span style={brandStyle}>Kleptonix</span> will
-          become. Not necessarily a rival to Stack Overflow, but a community
-          that anyone can join and contribute to.
+          That's my goal for what{" "}
+          <span className={styles.brand}>Kleptonix</span> will become. Not
+          necessarily a rival to Stack Overflow, but a community that anyone can
+          join and contribute to.
         </p>
       </Container>
 
       <Container className="pt-4">
         <Stack direction="horizontal" gap={3}>
-          <h2 style={linkStyle}>The Team</h2>
+          <h2 className={styles.title}>The Team</h2>
         </Stack>
         <hr />
         <p>
-          <span style={brandStyle}>Kleptonix</span> is made by your friendly
-          neighborhood developer,{" "}
-          <Link href="https://linkedin.com/in/hllywluis">
+          <span className={styles.brand}>Kleptonix</span> is made by your
+          friendly neighborhood developer,{" "}
+          <Link
+            href="https://linkedin.com/in/hllywluis"
+            className={styles.link}
+          >
             {owner.dname ? "@" + owner.dname : "@luis"}
           </Link>
           . He's a software engineer, a web developer, and a lifelong computer
