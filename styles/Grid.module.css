@@ -1,0 +1,37 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.gridItem {
+  min-width: 0;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.error {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--bs-danger-bg-subtle);
+  color: var(--bs-danger);
+  margin: 1rem 0;
+}

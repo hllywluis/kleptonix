@@ -1,54 +1,70 @@
+import { memo } from "react"
 import Card from "react-bootstrap/Card"
-import Parse from "html-react-parser"
+import { ErrorBoundary } from "./ErrorBoundary"
+import Markdown from "./Markdown"
+import styles from "../styles/PostCard.module.css"
+import type { PostCardProps } from "../types/components"
 
-export default function Postcard({
-  title,
-  author,
-  username,
-  klepton,
-  text,
-  views,
-  replies,
-}) {
-  const showdown = require("showdown")
-  const converter = new showdown.Converter({
-    strikethrough: true,
-    omitExtraWLInCodeBlocks: true,
-  })
+const PostCard = memo(
+  ({
+    title,
+    author,
+    username,
+    klepton,
+    text,
+    views,
+    replies,
+    className,
+  }: PostCardProps): JSX.Element => {
+    const handleReport = (): void => {
+      // TODO: Implement report functionality
+      console.log("Report clicked for post:", title)
+    }
 
-  return (
-    <Card className="h-100 bg-light border rounded-3">
-      <Card.Body>
-        <div className="text-center">
-          <Card.Title>
-            <h4>{title}</h4>
-          </Card.Title>
-          <Card.Subtitle>
-            <h6 className="text-muted">
-              {author} - @{username} - k/{klepton}
-            </h6>
-          </Card.Subtitle>
-        </div>
-        <hr />
-        <span>{Parse(converter.makeHtml(text))}</span>
-      </Card.Body>
-      <Card.Footer className="text-left">
-        <div className="row">
-          <div className="col-auto mr-auto">
-            <small className="text-muted">
-              {views} {views === 1 ? " view" : " views"}
-            </small>
-          </div>
-          <div className="col-auto mx-auto text-center">
-            <small className="text-muted">
-              {replies} {replies === 1 ? " Reply" : " Replies"}
-            </small>
-          </div>
-          <div className="col-auto ml-auto text-right">
-            <small className="text-muted">Report</small>
-          </div>
-        </div>
-      </Card.Footer>
-    </Card>
-  )
-}
+    return (
+      <ErrorBoundary>
+        <Card className={`${styles.card} ${className ?? ""}`}>
+          <Card.Body>
+            <div className="text-center">
+              <Card.Title className={styles.title}>
+                <h4>{title}</h4>
+              </Card.Title>
+              <Card.Subtitle className={styles.subtitle}>
+                {author} - @{username} - k/{klepton}
+              </Card.Subtitle>
+            </div>
+            <hr />
+            <div className={styles.content}>
+              <Markdown content={text} />
+            </div>
+          </Card.Body>
+          <Card.Footer className={styles.footer}>
+            <span className={styles.footerText}>
+              {views} {views === 1 ? "view" : "views"}
+            </span>
+            <span className={styles.footerText}>
+              {replies} {replies === 1 ? "Reply" : "Replies"}
+            </span>
+            <span
+              className={`${styles.footerText} ${styles.reportButton}`}
+              onClick={handleReport}
+              role="button"
+              tabIndex={0}
+              onKeyPress={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  handleReport()
+                }
+              }}
+            >
+              Report
+            </span>
+          </Card.Footer>
+        </Card>
+      </ErrorBoundary>
+    )
+  }
+)
+
+PostCard.displayName = "PostCard"
+
+export default PostCard

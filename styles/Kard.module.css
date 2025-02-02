@@ -1,0 +1,73 @@
+.container {
+  padding: 1rem 0;
+}
+
+.card {
+  position: relative;
+  height: 100%;
+  padding: 3rem;
+  border-radius: 0.75rem;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.prefix {
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.title {
+  font-family: Staatliches, cursive;
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.titleLink {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.titleLink:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.description {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  max-width: 66.666667%;
+}
+
+.stats {
+  display: flex;
+  gap: 2rem;
+}
+
+.stat {
+  font-size: 1.125rem;
+}
+
+.overlay {
+  background: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5));
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 0.75rem;
+  z-index: 0;
+}
