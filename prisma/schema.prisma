@@ -7,46 +7,73 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model klepton {
-  id            Int       @id @default(autoincrement())
-  created       DateTime? @db.Timestamptz(6)
-  description   String    @db.VarChar(2500)
-  owner         String    @db.VarChar(255)
-  pic           String    @db.VarChar(255)
-  owner_only    Boolean
-  member_only   Boolean
-  posts         String[]  @db.VarChar(255)
-  stitle        String    @db.VarChar(255)
-  title         String    @db.VarChar(255)
-  member_count  Int
-  post_count    Int
+model Klepton {
+  id           Int       @id @default(autoincrement())
+  createdAt    DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt    DateTime  @updatedAt @db.Timestamptz(6)
+  title        String    @db.VarChar(255)
+  stitle       String    @db.VarChar(255)
+  description  String    @db.VarChar(2500)
+  pic          String    @db.VarChar(255)
+  ownerOnly    Boolean   @map("owner_only")
+  memberOnly   Boolean   @map("member_only")
+  memberCount  Int       @map("member_count")
+  postCount    Int       @map("post_count")
+  owner        User      @relation("KleptonOwner", fields: [ownerId], references: [id])
+  ownerId      Int       @map("owner_id")
+  posts        Post[]
+  members      User[]    @relation("KleptonMembers")
+
+  @@index([ownerId])
+  @@map("klepton")
 }
 
-model post {
-  id      Int       @id @default(autoincrement())
-  author  String    @db.VarChar(255)
-  content String    @db.VarChar(8000)
-  created DateTime? @db.Timestamptz(6)
-  klepton String    @db.VarChar(255)
-  title   String    @db.VarChar(255)
-  views   Int
+model Post {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @db.Timestamptz(6)
+  title     String    @db.VarChar(255)
+  content   String    @db.VarChar(8000)
+  views     Int       @default(0)
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  Int       @map("author_id")
+  klepton   Klepton   @relation(fields: [kleptonId], references: [id])
+  kleptonId Int       @map("klepton_id")
+  replies   Reply[]
+
+  @@index([authorId, kleptonId])
+  @@map("post")
 }
 
-model reply {
-  id      Int       @id @default(autoincrement())
-  author  String    @db.VarChar(255)
-  content String    @db.VarChar(8000)
-  created DateTime? @db.Timestamptz(6)
-  post    String    @db.VarChar(255)
-  reacts  String[] @db.VarChar(255)
+model Reply {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @db.Timestamptz(6)
+  content   String    @db.VarChar(8000)
+  author    User      @relation(fields: [authorId], references: [id])
+  authorId  Int       @map("author_id")
+  post      Post      @relation(fields: [postId], references: [id])
+  postId    Int       @map("post_id")
+  reacts    String[]  @db.VarChar(255)
+
+  @@index([authorId, postId])
+  @@map("reply")
 }
 
-model user {
-  id       Int      @id @default(autoincrement())
-  dname    String?  @db.VarChar(255)
-  hidename Boolean?
-  subs     String[] @db.VarChar(255)
-  email    String   @unique @db.VarChar(255)
-  password String   @db.VarChar(255)
-  name     String?  @db.VarChar(255)
+model User {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @db.Timestamptz(6)
+  email     String    @unique @db.VarChar(255)
+  password  String    @db.VarChar(255)
+  dname     String?   @db.VarChar(255)
+  name      String?   @db.VarChar(255)
+  hidename  Boolean?  @default(false)
+  ownedKleptons Klepton[] @relation("KleptonOwner")
+  memberOf  Klepton[] @relation("KleptonMembers")
+  posts     Post[]
+  replies   Reply[]
+
+  @@index([email])
+  @@map("user")
 }

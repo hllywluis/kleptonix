@@ -1,8 +1,8 @@
-import Head from "next/head"
-import { retrieve_user } from "../tools/retrieve_user"
+import Head from 'next/head'
+import { retrieve_user } from '../tools/retrieve_user'
 
-import Kard from "components/kard"
-import KleptonixNavbar from "components/navbar"
+import Kard from 'components/kard'
+import KleptonixNavbar from 'components/navbar'
 
 export async function getServerSideProps(req) {
   return retrieve_user(req)
@@ -10,15 +10,15 @@ export async function getServerSideProps(req) {
 
 export default function Kleptons({ user }) {
   const java_url =
-    "https://images.unsplash.com/photo-1585332889055-059af80a9b5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80"
+    'https://images.unsplash.com/photo-1585332889055-059af80a9b5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1664&q=80'
   const rust_url =
-    "https://images.unsplash.com/photo-1612174194811-0ab2ce2fb492?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+    'https://images.unsplash.com/photo-1612174194811-0ab2ce2fb492?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'
   const python_url =
-    "https://images.unsplash.com/photo-1528158222524-d4d912d2e208?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2880&q=80"
+    'https://images.unsplash.com/photo-1528158222524-d4d912d2e208?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2880&q=80'
   const js_url =
-    "https://images.unsplash.com/photo-1576836165612-8bc9b07e7778?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+    'https://images.unsplash.com/photo-1576836165612-8bc9b07e7778?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'
   const k_url =
-    "https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
+    'https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80'
 
   return (
     <>
@@ -51,7 +51,7 @@ export default function Kleptons({ user }) {
 
       <Kard
         name="JavaScript"
-        description={`The language *Kleptonix* is built on. Anything JavaScript and framework related belongs here.`}
+        description="The language *Kleptonix* is built on. Anything JavaScript and framework related belongs here."
         member_string="Script Kiddies"
         member_count={4}
         post_string="Posts"

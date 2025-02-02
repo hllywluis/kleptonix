@@ -1,7 +1,7 @@
-x-kleptonix-env: &KLPTX_ENV
-  # This environment configuration is purely exemplary and requires changes to be secure.
+x-kleptonix-env:
+  &KLPTX_ENV # This environment configuration is purely exemplary and requires changes to be secure.
   environment:
-  # Change the NEXTAUTH_URL variable to your server's address.
+    # Change the NEXTAUTH_URL variable to your server's address.
     - NEXTAUTH_URL=http://localhost:3000/
     - POSTGRES_USER=kleptonix
     - POSTGRES_PASSWORD=Default_KL3PT0N1X_Password!
@@ -14,14 +14,14 @@ services:
   db:
     image: postgres
     healthcheck:
-      test: ["CMD", "psql", "-U", "kleptonix", "-c", "SELECT 1"]
+      test: ['CMD', 'psql', '-U', 'kleptonix', '-c', 'SELECT 1']
       interval: 10s
       timeout: 5s
       retries: 3
     ports:
       - 5432:5432
     volumes:
-      - ./kleptonix-data/:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     <<: *KLPTX_ENV
   web:
     build: .
@@ -30,4 +30,15 @@ services:
     ports:
       - 3000:3000
     <<: *KLPTX_ENV
-    command: ["./scripts/wait-for-it.sh", "db:5432", "--", "sh", "-c", "yarn prisma db push && node server.js"]
+    command:
+      [
+        './scripts/wait-for-it.sh',
+        'db:5432',
+        '--',
+        'sh',
+        '-c',
+        'yarn prisma db push && node server.js',
+      ]
+
+volumes:
+  postgres_data:
