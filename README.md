@@ -1,6 +1,6 @@
 # Kleptonix
 
-[![CodeQL](https://github.com/hllywluis/kleptonix/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/hllywluis/kleptonix/actions/workflows/codeql-analysis.yml)
+[![CodeQL](https://github.com/hllywluis/kleptonix/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/hllywluis/kleptonix/actions/workflows/github-code-scanning/codeql)
 
 A community-centric site like you've never seen before.
 
