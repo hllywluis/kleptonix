@@ -6,7 +6,7 @@
     "allowJs": false,
     "checkJs": false,
     "jsx": "preserve",
-    "target": "es6",
+    "target": "es2022",
     "pretty": true,
     "moduleResolution": "node",
     "module": "esnext",
@@ -17,13 +17,32 @@
       "esnext"
     ],
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "paths": {
+      "@/*": ["./*"],
+      "@components/*": ["components/*"],
+      "@layouts/*": ["layouts/*"],
+      "@styles/*": ["styles/*"],
+      "@tools/*": ["tools/*"],
+      "@types/*": ["types/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
