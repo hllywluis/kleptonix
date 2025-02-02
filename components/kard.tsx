@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import Container from "react-bootstrap/Container"
 import Parse from "html-react-parser"
 
@@ -33,11 +35,16 @@ export default function Kard({
               <div className="col">
                 <p>k/</p>
                 <h1 style={linkStyle} className="display-6 pb-2 fw-bold">
-                  {name}
+                  <a
+                    style={{ color: "white" }}
+                    href={`/k/${name.toLowerCase()}`}
+                  >
+                    {name}
+                  </a>
                 </h1>
-                <p className="col-md-8 py-2 fs-4">
+                <h6 className="col-md-8 py-2 fs-4">
                   {Parse(converter.makeHtml(description))}
-                </p>
+                </h6>
                 <div className="row">
                   <div className="col">
                     <h5>
