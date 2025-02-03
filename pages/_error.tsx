@@ -1,6 +1,6 @@
-import { NextPageContext } from "next"
-import Head from "next/head"
-import Container from "react-bootstrap/Container"
+import type { NextPageContext } from 'next'
+import Head from 'next/head'
+import Container from 'react-bootstrap/Container'
 
 interface ErrorProps {
   statusCode?: number
@@ -17,7 +17,7 @@ function Error({ statusCode }: ErrorProps) {
         <p className="lead">
           {statusCode
             ? `An error ${statusCode} occurred on server`
-            : "An error occurred on client"}
+            : 'An error occurred on client'}
         </p>
         <hr className="my-4" />
         <p>

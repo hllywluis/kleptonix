@@ -1,4 +1,3 @@
-
 pull_request_rules:
   - name: Add label on conflict
     conditions:
@@ -8,7 +7,7 @@ pull_request_rules:
       - conflict
     actions:
       comment:
-        message: "@{{author}} this pull request has conflicts that need to be resolved"
+        message: '@{{author}} this pull request has conflicts that need to be resolved'
       label:
         add:
           - conflict
@@ -25,30 +24,28 @@ pull_request_rules:
           ⚠️ This PR updates dependencies with security implications.
           Please review carefully before merging.
 
-  - name: Automatic merge for Dependabot pull requests + Automatic merge for hllywluis
-    conditions: []
-    actions:
-      queue:
-queue_rules:
-  - name: duplicated default from Automatic merge for Dependabot pull requests
-    queue_conditions:
-      - author=dependabot[bot]
+  - name: Automatic approve and merge for Dependabot and hllywluis
+    conditions:
+      - or:
+          - author=dependabot[bot]
+          - author=hllywluis
       - base=main
       - check-success=CodeQL
-      - "#approved-reviews-by>=1"
       - label!=do-not-merge
       - -conflict
       - -draft
-    merge_conditions:
-      - check-success=CodeQL
-    commit_message_template: |
-      {{title}} (#{{number}})
+    actions:
+      review:
+        type: APPROVE
+        message: Automatically approving PR
+      queue:
 
-      {{body}}
-    merge_method: squash
-  - name: duplicated default from Automatic merge for hllywluis
+queue_rules:
+  - name: default
     queue_conditions:
-      - author=hllywluis
+      - or:
+          - author=dependabot[bot]
+          - author=hllywluis
       - base=main
       - check-success=CodeQL
       - label!=do-not-merge

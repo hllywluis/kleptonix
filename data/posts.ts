@@ -11,11 +11,11 @@ export interface Post {
 
 export const defaultPosts: Post[] = [
   {
-    id: "welcome",
-    title: "Welcome to Kleptonix",
-    author: "Luis Bauza",
-    username: "luis",
-    klepton: "kleptonix",
+    id: 'welcome',
+    title: 'Welcome to Kleptonix',
+    author: 'Luis Bauza',
+    username: 'luis',
+    klepton: 'kleptonix',
     text: `##### Make yourself at home!
 Kleptonix allows developers (like you and I) to quickly and easily get in touch with others to create something new. Communities are denoted by "Kleptons," and each Klepton has a different topic. It fits in with the site's name, after all!
 
@@ -28,11 +28,11 @@ There's always something new to add or a bug to fix. I don't anticipate developm
     replies: 1,
   },
   {
-    id: "javascript",
-    title: "The Beauty of JavaScript",
-    author: "John Doe",
-    username: "jdoe",
-    klepton: "javascript",
+    id: 'javascript',
+    title: 'The Beauty of JavaScript',
+    author: 'John Doe',
+    username: 'jdoe',
+    klepton: 'javascript',
     text: `##### What is JavaScript?
 JavaScript is a programming language designed to make your life easier. In fact, this website is made using a subset of JavaScript called TypeScript. You can think of it like an "extension" of JavaScript that allows for more control over types and keeps applications running more reliably.
 
@@ -42,11 +42,11 @@ In addition to being one of the most widely used languages on the Web, JavaScrip
     replies: 0,
   },
   {
-    id: "python",
-    title: "Python is Cool",
-    author: "Bryan Grigorie",
-    username: "bgregz",
-    klepton: "python",
+    id: 'python',
+    title: 'Python is Cool',
+    author: 'Bryan Grigorie',
+    username: 'bgregz',
+    klepton: 'python',
     text: `##### What is Python?
 Python is one of the most popular programming languages. It's used to make Flask applications, and it's used to make Django applications. I use it everyday at work, and I've also made Django apps in the past for school.
 
@@ -58,22 +58,22 @@ For those that are still learning programming, Python is a great starter languag
     replies: 0,
   },
   {
-    id: "rust",
-    title: "Rust is Uncool",
-    author: "John Doe",
-    username: "jdoe",
-    klepton: "rust",
+    id: 'rust',
+    title: 'Rust is Uncool',
+    author: 'John Doe',
+    username: 'jdoe',
+    klepton: 'rust',
     text: `##### What is Rust?
 Rust is a programming language. We don't need to talk about it, unless there's some reason why you need to crunch numbers.`,
     views: 0,
     replies: 0,
   },
   {
-    id: "java",
-    title: "Java is Not a Programming Language",
-    author: "Luis Bauza",
-    username: "luis",
-    klepton: "java",
+    id: 'java',
+    title: 'Java is Not a Programming Language',
+    author: 'Luis Bauza',
+    username: 'luis',
+    klepton: 'java',
     text: `##### What is Java?
 Believe it or not, most developers don't know that Java refers to a cup of coffee and not a programming language.`,
     views: 0,

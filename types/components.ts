@@ -1,5 +1,5 @@
-import { Session } from "next-auth"
-import { ReactNode } from "react"
+import { Session } from 'next-auth'
+import type { ReactNode } from 'react'
 
 export interface User {
   id: number

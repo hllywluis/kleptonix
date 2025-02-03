@@ -1,12 +1,12 @@
-import Head from "next/head"
-import Link from "next/link"
-import { GetServerSideProps } from "next"
-import { retrieve_user } from "../tools/retrieve_user"
-import Container from "react-bootstrap/Container"
-import Stack from "react-bootstrap/Stack"
-import KleptonixNavbar from "../components/navbar"
-import styles from "../styles/About.module.css"
-import type { User } from "../types/components"
+import Head from 'next/head'
+import Link from 'next/link'
+import type { GetServerSideProps } from 'next'
+import { retrieve_user } from '../tools/retrieve_user'
+import Container from 'react-bootstrap/Container'
+import Stack from 'react-bootstrap/Stack'
+import KleptonixNavbar from '../components/navbar'
+import styles from '../styles/About.module.css'
+import type { User } from '../types/components'
 
 interface AboutProps {
   user: User
@@ -15,18 +15,18 @@ interface AboutProps {
 
 const defaultOwner: User = {
   id: 1,
-  dname: "luis",
-  email: "luis@kleptonix.com",
-  password: "",
+  dname: 'luis',
+  email: 'luis@kleptonix.com',
+  password: '',
   subs: [],
   hidename: false,
-  name: "Luis Bauza",
+  name: 'Luis Bauza',
 }
 
 const defaultUser: User = {
   id: 0,
-  email: "",
-  password: "",
+  email: '',
+  password: '',
   subs: [],
   dname: null,
   hidename: null,
@@ -45,13 +45,13 @@ export const getServerSideProps: GetServerSideProps<AboutProps> = async (
       user = userProps.props.user
     }
   } catch (error) {
-    console.error("Error retrieving user:", error)
+    console.error('Error retrieving user:', error)
   }
 
   try {
-    const client = require("../prisma/prisma")
+    const client = require('../prisma/prisma')
     const { prisma } = client
-    const ownerEmail = "luis@kleptonix.com"
+    const ownerEmail = 'luis@kleptonix.com'
 
     const dbOwner = await prisma.user?.findUnique({
       where: {
@@ -64,7 +64,7 @@ export const getServerSideProps: GetServerSideProps<AboutProps> = async (
     }
   } catch (error) {
     console.error(
-      "Database connection failed, using default owner data:",
+      'Database connection failed, using default owner data:',
       error
     )
   }
@@ -78,7 +78,7 @@ export const getServerSideProps: GetServerSideProps<AboutProps> = async (
 }
 
 export default function About({ user, owner }: AboutProps) {
-  const pageTitle = `Kleptonix | About${user.dname ? ` | @${user.dname}` : ""}`
+  const pageTitle = `Kleptonix | About${user.dname ? ` | @${user.dname}` : ''}`
 
   return (
     <>
@@ -120,7 +120,7 @@ export default function About({ user, owner }: AboutProps) {
           each other?
           <br />
           <br />
-          That's my goal for what{" "}
+          That's my goal for what{' '}
           <span className={styles.brand}>Kleptonix</span> will become. Not
           necessarily a rival to Stack Overflow, but a community that anyone can
           join and contribute to.
@@ -134,12 +134,12 @@ export default function About({ user, owner }: AboutProps) {
         <hr />
         <p>
           <span className={styles.brand}>Kleptonix</span> is made by your
-          friendly neighborhood developer,{" "}
+          friendly neighborhood developer,{' '}
           <Link
             href="https://linkedin.com/in/hllywluis"
             className={styles.link}
           >
-            {owner.dname ? "@" + owner.dname : "@luis"}
+            {owner.dname ? '@' + owner.dname : '@luis'}
           </Link>
           . He's a software engineer, a web developer, and a lifelong computer
           science student. He's a pretty cool guy.
