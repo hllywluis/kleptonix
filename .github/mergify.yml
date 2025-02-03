@@ -34,7 +34,6 @@ queue_rules:
       - author=dependabot[bot]
       - base=main
       - check-success=CodeQL
-      - '#approved-reviews-by>=1'
       - label!=do-not-merge
       - -conflict
       - -draft
