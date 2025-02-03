@@ -1,9 +1,9 @@
-import { memo } from "react"
-import Card from "react-bootstrap/Card"
-import { ErrorBoundary } from "./ErrorBoundary"
-import Markdown from "./Markdown"
-import styles from "../styles/PostCard.module.css"
-import type { PostCardProps } from "../types/components"
+import { memo } from 'react'
+import Card from 'react-bootstrap/Card'
+import { ErrorBoundary } from './ErrorBoundary'
+import Markdown from './Markdown'
+import styles from '../styles/PostCard.module.css'
+import type { PostCardProps } from '../types/components'
 
 const PostCard = memo(
   ({
@@ -18,12 +18,12 @@ const PostCard = memo(
   }: PostCardProps): JSX.Element => {
     const handleReport = (): void => {
       // TODO: Implement report functionality
-      console.log("Report clicked for post:", title)
+      console.log('Report clicked for post:', title)
     }
 
     return (
       <ErrorBoundary>
-        <Card className={`${styles.card} ${className ?? ""}`}>
+        <Card className={`${styles.card} ${className ?? ''}`}>
           <Card.Body>
             <div className="text-center">
               <Card.Title className={styles.title}>
@@ -40,10 +40,10 @@ const PostCard = memo(
           </Card.Body>
           <Card.Footer className={styles.footer}>
             <span className={styles.footerText}>
-              {views} {views === 1 ? "view" : "views"}
+              {views} {views === 1 ? 'view' : 'views'}
             </span>
             <span className={styles.footerText}>
-              {replies} {replies === 1 ? "Reply" : "Replies"}
+              {replies} {replies === 1 ? 'Reply' : 'Replies'}
             </span>
             <span
               className={`${styles.footerText} ${styles.reportButton}`}
@@ -51,7 +51,7 @@ const PostCard = memo(
               role="button"
               tabIndex={0}
               onKeyPress={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
+                if (e.key === 'Enter' || e.key === ' ') {
                   handleReport()
                 }
               }}
@@ -65,6 +65,6 @@ const PostCard = memo(
   }
 )
 
-PostCard.displayName = "PostCard"
+PostCard.displayName = 'PostCard'
 
 export default PostCard
